@@ -9,7 +9,8 @@ client folder:
 	optional: delete index.css, app.test.js, logo.svg, setupTests.js from client folder, and their references in index.js and app.js
 		  delete everything except first time in app.css, and remove all code except the outermost div from app.js
         "npm start" to start the frontend application
-        add axios and react-router-dom@latest
+        install axios, react-router-dom@latest, and bootstrap
+		
 
 
 server folder:
