@@ -1,0 +1,95 @@
+.border{
+    margin-top: 20px;
+}
+
+.loginPage{
+    position:fixed;
+    padding:30px;
+    margin:0;
+
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.theTitle{
+    margin-top: 10px;
+    font-family: 'Libre Baskerville';
+    font-size: 60px;
+    /*font-weight: 600;*/
+    color: #fff;
+    font-style: italic;
+}
+
+.theSubTitle
+{
+    color: #fff;
+    font-family: 'Libre Baskerville';
+    font-size: 20px;
+}
+
+.usfLogo{
+    margin-top: 10px;
+    width: 140px;
+    height: 130px;
+}
+
+.USFTxt{
+    color: #006747;
+    font-family: 'Libre Baskerville';
+    font-size: 30px;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+hr {
+    border: 0;
+    clear:both;
+    display:block;
+    width: 96%;               
+    background-color:#CFC493;
+    height: 2px;
+}
+
+.notSchool{
+    margin-top: 10px;
+    color: #fff;
+    font-family: 'Libre Baskerville';
+    font-size: 20px;
+}
+
+.changeSchools{
+    background-color: #006747;
+    color:#fff;
+    border-radius: 10px;
+    padding: 0.2rem 0.5rem;
+    border:none;
+}
+
+.changeSchools:hover{
+    background-color: #005432;
+    transition: all 0.2s ease-in-out;
+}
+
+.usfOption{
+    margin-top: 10px;
+    background-color: #006747;
+    color:#fff;
+    border-radius: 30px;
+    padding: 0.2rem 10rem;
+    border:none;
+    font-family: 'Libre Baskerville';
+    font-size: 30px;
+}
+
+.usfOption:hover{
+    background-color: #005432;
+    transition: all 0.2s ease-in-out;
+}
