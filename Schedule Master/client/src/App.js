@@ -4,6 +4,8 @@ import { Route, Routes } from 'react-router-dom';
 
 import Home from "./components/home";
 import Login from "./components/login";
+import Selection from "./components/selection";
+import Cart from "./components/cart";
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
       <Routes>
       <Route path='/' element={<Home/>} />
       <Route path='/login' element={<Login/>} />
+      <Route path='/selection' element={<Selection/>} />
+      <Route path='/cart' element={<Cart/>} />
       </Routes>
     </div>
   );
