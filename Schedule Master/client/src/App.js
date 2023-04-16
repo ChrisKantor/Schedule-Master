@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import Navbar from "./components/Navbar";
 
 import Home from "./components/home";
 import Login from "./components/login";
@@ -17,6 +18,7 @@ function App() {
       <Route path='/cart' element={<Cart/>} />
       </Routes>
     </div>
+    
   );
 }
 
