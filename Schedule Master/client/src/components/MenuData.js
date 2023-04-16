@@ -1,19 +1,19 @@
 export const MenuData = [
     {
         title: "Home",
-        url:"#",
+        url:"/",
         cName:"nav-links",
         icon:"fa-solid fa-house-user"
     },
     {
         title: "Course Menu",
-        url:"#",
+        url:"/selection",
         cName:"nav-links",
         icon:"fa-solid fa-book"
     },
     {
         title: "Cart",
-        url:"#",
+        url:"/cart",
         cName:"nav-links",
         icon:"fa-solid fa-cart-shopping"
     },

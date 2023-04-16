@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect } from "react";
 import MaterialReactTable from 'material-react-table';
 import { Link } from "react-router-dom";
 import Axios from "axios";
+import Navbar from "./Navbar";
 
 // Courses Table
 // crn              varchar(6)             PK 
@@ -27,14 +28,17 @@ export const Selection = () => {
       {
         header: 'CRN',
         accessorKey: 'crn',
+        size: 75
       },
       {
         header: 'Subject',
         accessorKey: 'subject',
+        size: 75
       },
       {
         header: 'Course Number',
         accessorKey: 'course_number',
+        size: 75
       },
       {
         header: 'Title',
@@ -43,26 +47,32 @@ export const Selection = () => {
       {
         header: 'Instructor',
         accessorKey: 'instructor',
+        size: 100
       },
       {
         header: 'Seats Available',
         accessorKey: 'seats_available',
+        size: 50
       },
       {
         header: 'Seats Total',
         accessorKey: 'seats_total',
+        size: 50
       },
       {
         header: 'Open',
         accessorKey: 'open',
+        size: 25
       },
       {
         header: 'Time',
         accessorKey: 'time',
+        size: 75
       },
       {
         header: 'Location',
         accessorKey: 'location',
+        size: 75
       },
     ],
     [],
@@ -144,15 +154,20 @@ export const Selection = () => {
 
 
   return (
-    <div>
-      <MaterialReactTable
-      columns={columns}
-      data={courseList}
-      enableRowSelection //enables us to select rows
-      getRowId={(row) => row.crn} //give each row a more useful id, we will use crn to determine which rows we have selected
-      onRowSelectionChange={setRowSelection} //connect internal row selection state to your own
-      state={{ rowSelection }} //pass our managed row selection state to the table to use
-      />
+    <div className="page">
+      <div style={{margin: 120}}>
+        <Navbar></Navbar>
+      </div>
+      <div>
+        <MaterialReactTable
+        columns={columns}
+        data={courseList}
+        enableRowSelection //enables us to select rows
+        getRowId={(row) => row.crn} //give each row a more useful id, we will use crn to determine which rows we have selected
+        onRowSelectionChange={setRowSelection} //connect internal row selection state to your own
+        state={{ rowSelection }} //pass our managed row selection state to the table to use
+        />
+      </div>
     
       <button onClick={addToCart}>Add Classes To Cart</button>
 
