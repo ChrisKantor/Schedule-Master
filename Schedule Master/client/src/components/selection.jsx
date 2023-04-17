@@ -1,6 +1,6 @@
 import { useMemo, useState, useEffect } from "react";
 import MaterialReactTable from 'material-react-table';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Axios from "axios";
 import Navbar from "./Navbar";
 
@@ -20,7 +20,7 @@ import Navbar from "./Navbar";
 
 // This function needed to be set up differently than others to use useMemo
 // useMemo returns a memoized value, Think of memoization as caching a value so that it does not need to be recalculated.
-export const Selection = () => {
+export const Selection = (props) => {
 
   //sets up the columns we use when we display the data from the db
   //header is how we want the column name to be displayed
@@ -91,6 +91,31 @@ export const Selection = () => {
     [],
   );
   
+  //how we load cart data that we are passed
+  //used to represent the cart
+  const [cartSelection, setCartSelection] = useState([]);
+
+  const location = useLocation();
+
+  //current Cart selection, use to access the array
+  const saveCart = () => {
+      console.log("Current Cart: " + location.state.currentCart);
+      setCartSelection(location.state.currentCart);
+  }
+
+  useEffect( () => {
+      if (location.state !== null)
+      {
+          saveCart();
+      }
+      else
+      {
+          console.log("Cart is empty");
+      }
+  }, []);
+
+
+  
   //how we display the data from the database
   const [courseList, setCourseList] = useState([]);
 
@@ -130,7 +155,6 @@ export const Selection = () => {
   //Cart functions
 
   //used to represent the cart
-  const [cartSelection, setCartSelection] = useState([]);
 
 
   //another useEffect function, this time it triggers whenever cartSelection changes
@@ -160,7 +184,15 @@ export const Selection = () => {
       //so we are basically saying cartSelection = everything in cart selection + everything in rowSelection
       //to solve the issues of duplicate CRNs being added to the cart
       //we turn the array into a set (which does not allow dups), then back into an array
-      setCartSelection(cartSelection => [...new Set([...cartSelection, ...Object.keys(rowSelection)])]);
+      if ( typeof cartSelection !== 'undefined' && Array.isArray(cartSelection) && cartSelection.length > 0 ) {
+        console.log(cartSelection.length);
+        setCartSelection(cartSelection => [...new Set([...cartSelection, ...Object.keys(rowSelection)])]);
+      }
+
+      else {
+        setCartSelection([]);
+        setCartSelection(cartSelection => [...new Set([...cartSelection, ...Object.keys(rowSelection)])]);
+      }
     }
   };
 
@@ -169,7 +201,7 @@ export const Selection = () => {
   return (
     <div className="page">
       <div style={{margin: 120}}>
-        <Navbar></Navbar>
+        <Navbar currentCart={cartSelection}></Navbar>
       </div>
       <div>
         <MaterialReactTable
@@ -182,10 +214,7 @@ export const Selection = () => {
         />
       </div>
     
-      <button onClick={addToCart}>Add Classes To Cart</button>
-
-      <Link className="btn btn-secondary" to="/cart" state={{currentCart: cartSelection}}>Go to Cart</Link>
-
+      <button style={{margin: 30}} className="btn btn-primary btn-lg" onClick={addToCart}>Add Classes To Cart</button>
     </div>
   );
 };

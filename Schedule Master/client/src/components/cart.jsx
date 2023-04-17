@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useMemo, useState, useEffect } from "react";
 import MaterialReactTable from 'material-react-table';
 import Axios from "axios";
@@ -76,31 +76,54 @@ function Cart(props) {
     );
     
 
+    //used to represent the cart
+    const [cartSelection, setCartSelection] = useState([]);
+
     const location = useLocation();
-    // console.log(props, "props");
-    // console.log(location, "Use location hook");
 
     //current Cart selection, use to access the array
-    console.log("Current Cart: " + location.state.currentCart);
+    const saveCart = () => {
+        console.log("Current Cart: " + location.state.currentCart);
+        setCartSelection(location.state.currentCart);
+        console.log("Cart Selection!!!!!!!: " + cartSelection);
+    }
+
+    useEffect( () => {
+        if (location.state !== null)
+        {
+            saveCart();
+        }
+        else
+        {
+            console.log("Cart is empty");
+        }
+    }, []);
 
     //how we get data from the db, similar to selection.jsx
     const [courseList, setCourseList] = useState([]);
 
+    //need to use location.state.currentCart instead of cartSelection as setCartSelection takes a while to run,
+    //so it might not be done in time before this function gets called
     const getCourses = () => {
-        Axios.post('http://localhost:3001/cartCourses', {crnList: location.state.currentCart}).then((response) => {
-            console.log(response);
-            setCourseList(response.data);
-        })
+      Axios.post('http://localhost:3001/cartCourses', {crnList: location.state.currentCart}).then((response) => {
+          console.log(response);
+          setCourseList(response.data);
+      })
     }
 
     useEffect( () => {
+      if (location.state !== null)
+      {
         getCourses()
-        }, []);
+      }
+    }, []);
     
+    console.log("Cart Selection!!!!!!!: " + cartSelection);
+
     return (
         <div className="page">
             <div style={{margin: 120}}>
-                <Navbar></Navbar>
+                <Navbar currentCart={cartSelection}></Navbar>
             </div>
 
             <div>
