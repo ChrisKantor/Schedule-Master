@@ -11,55 +11,66 @@ function Cart(props) {
     //accessorKey is the name of the column in the db
     const columns = useMemo(
         () => [
-            {
+          {
             header: 'CRN',
             accessorKey: 'crn',
-            size: 75
-            },
-            {
+            size: 25
+          },
+          {
             header: 'Subject',
             accessorKey: 'subject',
             size: 75
-            },
-            {
+          },
+          {
             header: 'Course Number',
             accessorKey: 'course_number',
-            size: 75
-            },
-            {
+            size: 25
+          },
+          {
             header: 'Title',
             accessorKey: 'title',
-            },
-            {
+          },
+          {
             header: 'Instructor',
             accessorKey: 'instructor',
             size: 100
-            },
-            {
+          },
+          {
             header: 'Seats Available',
             accessorKey: 'seats_available',
-            size: 50
-            },
-            {
+            size: 25
+          },
+          {
             header: 'Seats Total',
             accessorKey: 'seats_total',
-            size: 50
-            },
-            {
-            header: 'Open',
-            accessorKey: 'open',
             size: 25
-            },
-            {
-            header: 'Time',
-            accessorKey: 'time',
-            size: 75
-            },
-            {
+          },
+          {
+            header: 'Open',
+            accessorKey: 'is_open',
+            size: 25
+          },
+          {
+            header: 'Meeting Days',
+            accessorKey: 'meeting_days',
+            size: 25
+    
+          },
+          {
+            header: 'Start time',
+            accessorKey: 'start_time',
+            size: 50
+          },
+          {
+            header: 'End time',
+            accessorKey: 'end_time',
+            size: 50
+          },
+          {
             header: 'Location',
             accessorKey: 'location',
             size: 75
-            },
+          },
         ],
         [],
     );

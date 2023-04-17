@@ -47,14 +47,17 @@ app.post("/create", (req, res) => {
     const course_number = req.body.course_number;
     const title = req.body.title;
     const instructor = req.body.instructor;
-    const capacity = req.body.capacity;
-    const open = req.body.open;
-    const time = req.body.time;
+    const seats_available = req.body.seats_available;
+    const seats_total = req.body.seats_total;
+    const is_open = req.body.is_open;
+    const meeting_days = req.body.meeting_days;
+    const start_time = req.body.time;
+    const end_time = req.body.time;
     const location = req.body.location;
 
     //use a prepared statement (?'s in place of direct input from the variables) for security
-    db.query("INSERT INTO courses (crn, subject, course_number, title, instructor, capacity, open, time, location) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", 
-    [crn, subject, course_number, title, instructor, capacity, open, time, location], (err, result) => {
+    db.query("INSERT INTO courses (crn, subject, course_number, title, instructor, seats_available, seats_total, is_open, meeting_days, start_time, end_time, location) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+    [crn, subject, course_number, title, instructor, seats_available, seats_total, is_open, meeting_days, start_time, end_time, location], (err, result) => {
         if (err) {
             console.log(err);
         }

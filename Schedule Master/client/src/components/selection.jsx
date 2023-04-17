@@ -4,17 +4,19 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 import Navbar from "./Navbar";
 
-// Courses Table
-// crn              varchar(6)             PK 
-// subject          varchar(3) 
-// course_number    int
-// title            varchar(255) 
-// instructor       varchar(255) 
-// seats_available  int 
-// seats_total      int 
-// open             tinyint 
-// time             varchar(255) 
-// location         varchar(255)
+// Courses Table (12 columns)
+// crn varchar(6) PK 
+// subject varchar(3) 
+// course_number int 
+// title varchar(255) 
+// instructor varchar(255) 
+// seats_available int 
+// seats_total int 
+// is_open varchar(3) 
+// meeting_days varchar(7) 
+// start_time time 
+// end_time time 
+// location varchar(255)
 
 // This function needed to be set up differently than others to use useMemo
 // useMemo returns a memoized value, Think of memoization as caching a value so that it does not need to be recalculated.
@@ -28,7 +30,7 @@ export const Selection = () => {
       {
         header: 'CRN',
         accessorKey: 'crn',
-        size: 75
+        size: 25
       },
       {
         header: 'Subject',
@@ -38,7 +40,7 @@ export const Selection = () => {
       {
         header: 'Course Number',
         accessorKey: 'course_number',
-        size: 75
+        size: 25
       },
       {
         header: 'Title',
@@ -52,22 +54,33 @@ export const Selection = () => {
       {
         header: 'Seats Available',
         accessorKey: 'seats_available',
-        size: 50
+        size: 25
       },
       {
         header: 'Seats Total',
         accessorKey: 'seats_total',
-        size: 50
-      },
-      {
-        header: 'Open',
-        accessorKey: 'open',
         size: 25
       },
       {
-        header: 'Time',
-        accessorKey: 'time',
-        size: 75
+        header: 'Open',
+        accessorKey: 'is_open',
+        size: 25
+      },
+      {
+        header: 'Meeting Days',
+        accessorKey: 'meeting_days',
+        size: 25
+
+      },
+      {
+        header: 'Start time',
+        accessorKey: 'start_time',
+        size: 50
+      },
+      {
+        header: 'End time',
+        accessorKey: 'end_time',
+        size: 50
       },
       {
         header: 'Location',
