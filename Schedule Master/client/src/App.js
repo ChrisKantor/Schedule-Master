@@ -7,6 +7,7 @@ import Home from "./components/home";
 import Login from "./components/login";
 import Selection from "./components/selection";
 import Cart from "./components/cart";
+import SchoolOptions from './components/schoolOptions';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path='/login' element={<Login/>} />
       <Route path='/selection' element={<Selection/>} />
       <Route path='/cart' element={<Cart/>} />
+      <Route path='/schoolOptions' element={<SchoolOptions/>} />
       </Routes>
     </div>
     
