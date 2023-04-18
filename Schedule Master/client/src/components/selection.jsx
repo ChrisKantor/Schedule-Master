@@ -241,7 +241,7 @@ export const Selection = (props) => {
         <MaterialReactTable
         columns={columns}
         data={courseList}
-        enableRowSelection //enables us to select rows
+        enableRowSelection = {(row) => row.original.seats_available > 0} //enables us to select rows where seats_available >= 1
         getRowId={(row) => row.crn} //give each row a more useful id, we will use crn to determine which rows we have selected
         onRowSelectionChange={setRowSelection} //connect internal row selection state to your own
         state={{ rowSelection }} //pass our managed row selection state to the table to use
