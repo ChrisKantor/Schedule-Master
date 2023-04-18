@@ -1,7 +1,18 @@
+import { signup, useAuth, login, logout } from "../firebase";
+
+async function handleLogout()
+{
+    try{
+    await logout();
+    }catch{
+        alert("Error!");
+    }
+}
+
 export const MenuData = [
     {
         title: "Home",
-        url:"/",
+        url:"/home",
         cName:"nav-links",
         icon:"fa-solid fa-house-user"
     },
@@ -19,7 +30,8 @@ export const MenuData = [
     },
     {
         title: "Logout",
-        url:"/login",
-        cName:"nav-links-logout"
+        url:"/",
+        cName:"nav-links-logout",
+        theClick: handleLogout
     },
 ];

@@ -3,6 +3,7 @@ import "./Navbar"
 import Navbar from "./Navbar";
 import { useState, useEffect} from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../firebase";
 
 function Home(props) {
     //used to represent the cart
@@ -27,6 +28,7 @@ function Home(props) {
         }
     }, []);
     
+    const currentUser = useAuth();
 
     return (
         <div className="home">
@@ -47,6 +49,8 @@ function Home(props) {
                     </div>
                 </Link>
             </div>
+
+            <div className="authorization">Currently logged in as: {currentUser?.email}</div>
         </div>
     )
 }
