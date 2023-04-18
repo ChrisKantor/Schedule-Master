@@ -2,6 +2,7 @@ import { Component} from "react";
 import {MenuData} from "./MenuData";
 import "./NavbarStyles.css";
 import { Link } from "react-router-dom";
+import { signup, useAuth, login, logout } from "../firebase";
 
 class Navbar extends Component
 {
@@ -11,7 +12,7 @@ class Navbar extends Component
             <nav className = "NavbarItems">
                 <h2 className="logo">
                     Schedule Master
-                    <i className = "fab fa-react"></i>
+                    {/*<i className = "fab fa-react"></i>*/}
                 </h2>
                 <ul className="navmenu">
                     {MenuData.map((item, index)=>{
@@ -22,7 +23,7 @@ class Navbar extends Component
                                     {item.title}
                                 </a> */}
 
-                                <Link to={item.url} className={item.cName} state={{currentCart: this.props.currentCart}}>
+                                <Link to={item.url} className={item.cName} onClick={item.theClick} state={{currentCart: this.props.currentCart}}>
                                     <i className = {item.icon}></i>
                                     {item.title}
                                 </Link>
