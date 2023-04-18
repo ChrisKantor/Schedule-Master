@@ -4,6 +4,13 @@ import { Link, useLocation } from "react-router-dom";
 import Axios from "axios";
 import Navbar from "./Navbar";
 
+//used for modals
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
 // Courses Table (12 columns)
 // crn varchar(6) PK 
 // subject varchar(3) 
@@ -123,6 +130,7 @@ export const Selection = (props) => {
     Axios.get('http://localhost:3001/courses').then((response) => {
       console.log(response);
       setCourseList(response.data);
+      console.log("got courses");
     });
   };
 
@@ -193,17 +201,43 @@ export const Selection = (props) => {
         setCartSelection([]);
         setCartSelection(cartSelection => [...new Set([...cartSelection, ...Object.keys(rowSelection)])]);
       }
+
+      handleOpen();
     }
   };
 
 
 
+
+  //modal stuff
+  //MODAL STUFF
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <div className="page">
-      <div style={{margin: 120}}>
+      <div style={{margin: 80}}>
         <Navbar currentCart={cartSelection}></Navbar>
       </div>
+
       <div>
+        <h1>Course Selection</h1>
+      </div>
+
+      <div style={{margin: 80}}>
         <MaterialReactTable
         columns={columns}
         data={courseList}
@@ -215,6 +249,22 @@ export const Selection = (props) => {
       </div>
     
       <button style={{margin: 30}} className="btn btn-primary btn-lg" onClick={addToCart}>Add Classes To Cart</button>
+
+
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Added Classes to Cart
+          </Typography>
+        </Box>
+      </Modal>
+
     </div>
   );
 };

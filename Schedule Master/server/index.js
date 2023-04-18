@@ -85,7 +85,7 @@ app.get('/courses', (req, res) => {
 //get requests dont allow body, the information you are passing needs to be stored in the url
 //I was having issues getting this to work so I just decided to use a post request
 app.post('/cartCourses', (req, res) => {
-    const crnList = req.body.crnList;;
+    const crnList = req.body.crnList;
     db.query("SELECT * FROM courses WHERE crn IN (?)", [crnList], (err, result) => {
         if (err) {
             console.log(err);
@@ -95,6 +95,25 @@ app.post('/cartCourses', (req, res) => {
         }
     });
 });
+
+
+
+//this post request allows us to ADD information to the database when we call it from the front end
+app.post("/registerCourses", (req, res) => {
+    const crnList = req.body.crnList;
+
+    //use a prepared statement (?'s in place of direct input from the variables) for security
+    db.query("UPDATE courses SET seats_available = seats_available - 1  WHERE crn IN (?)", [crnList], (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send("Courses Registered");
+        }
+    });
+});
+
+
 
 //designate a port for our app to run on. Use an empty function to use console.log
 app.listen(3001, ()=> {console.log("Server is running on port 3001!")});
