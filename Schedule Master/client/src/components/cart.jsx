@@ -197,6 +197,11 @@ function Cart(props) {
           console.log("location.state.currentCart AFTER: " + location.state.currentCart);
           if (location.state === null)
           getCourses();
+
+          if (reg === false)
+          {
+            handleOpen();
+          }
         }
 
         else
@@ -206,10 +211,6 @@ function Cart(props) {
           setCartSelection([]);
         }
         
-        if (reg === false)
-        {
-          handleOpen();
-        }
       }
 
       //else, set cart selection to an empty array
@@ -277,7 +278,7 @@ function Cart(props) {
 
             </div>
 
-            <div style={{margin: 80}}>
+            <div style={{maxWidth: '95vw', maxHeight: '70vh', margin: 50, overflowX: 'auto', overflowY: 'auto', flexShrink: 0.5}}>
               <MaterialReactTable
               columns={columns}
               data={courseList}

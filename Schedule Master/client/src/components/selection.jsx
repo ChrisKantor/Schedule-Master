@@ -237,7 +237,7 @@ export const Selection = (props) => {
         <h1>Course Selection</h1>
       </div>
 
-      <div style={{margin: 80}}>
+      <div style={{maxWidth: '95vw', maxHeight: '70vh', margin: 50, overflowX: 'auto', overflowY: 'auto', flexShrink: 0.5}}>
         <MaterialReactTable
         columns={columns}
         data={courseList}
